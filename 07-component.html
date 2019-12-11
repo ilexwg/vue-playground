@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>07-component</title>
+</head>
+<body>
+  <div id="app">
+    <ul>
+      <todo-item
+        v-for="(todo, i) of todos"
+        :key="i"
+        :todo="todo"
+      ></todo-item>
+    </ul>
+  </div>
+
+  <script src="./vue.js"></script>
+  <script>
+    Vue.component('todo-item', {
+      props: {
+        todo: {
+          type: Object
+        }
+      },
+      template: '<li>{{ todo.text }}</li>'
+    });
+
+    var app = new Vue({
+      el: '#app',
+      data: {
+        todos: [
+          { text: '今天干点啥' },
+          { text: '今天喝啤酒' }
+        ]
+      }
+    });
+  </script>
+</body>
+</html>
